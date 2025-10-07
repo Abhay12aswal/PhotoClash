@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: prisma_user # ⬅️ Your DB user
+      POSTGRES_PASSWORD: prisma_password # ⬅️ Your DB password
+      POSTGRES_DB: my_database # ⬅️ Your DB name
+    ports:
+      - "5432:5432" # Maps the container port 5432 to your host port 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
+
+
+#docker compose up -d
