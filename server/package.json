@@ -3,27 +3,35 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "start": "node ./dist/index.js",
-    "server": "nodemon ./dist/index.js",
-    "dev": "concurrently \"npm run watch\" \"npm run server\"  ",
     "watch": "tsc -w",
-    "build": "tsc"
+    "build": "concurrently \"tsc\" \"npm run copy-files\" ",
+    "server": "nodemon ./dist/index.js",
+    "dev": "concurrently \"npm run watch\" \"npm run server\" \"npm run watch-views\"",
+    "copy-files": "copyfiles -u 1 \"src/views/**/*\" dist/",
+    "watch-views": "nodemon --watch src/views -e ejs -x \"npm run copy-files\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.16.3",
+    "bullmq": "^5.61.0",
     "concurrently": "^9.2.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0"
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "nodemailer": "^7.0.9"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
+    "@types/ejs": "^3.1.5",
     "@types/express": "^5.0.3",
+    "@types/nodemailer": "^7.0.2",
+    "copyfiles": "^2.4.1",
     "nodemon": "^3.1.10",
     "prisma": "^6.16.3",
     "typescript": "^5.9.3"

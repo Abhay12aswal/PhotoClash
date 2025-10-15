@@ -1,16 +1,29 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-require("dotenv/config");
-const app = (0, express_1.default)();
+import express from 'express';
+import "dotenv/config";
+import path from 'path';
+import { fileURLToPath } from 'url';
+import ejs from 'ejs';
+import { sendMail } from './config/mail.js';
+//view current dir path
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const app = express();
 const PORT = process.env.PORT || 7000;
-app.get('/', (req, res) => {
-    return res.send("working");
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+//view engine
+app.set("view engine", "ejs");
+app.set('views', path.resolve(__dirname, './views'));
+//server static file like css,js from the public folder
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', async (req, res) => {
+    const html = await ejs.renderFile(__dirname + `/views/emails/welcome.ejs`, {
+        name: "abhay aswal"
+    });
+    await sendMail("fativ42717@fanlvr.com", "testing smtp", html);
+    return res.json({
+        msg: "email send successfully"
+    });
 });
-app.get("/new");
 app.listen(PORT, () => {
     console.log(`server is listening in ${PORT}`);
 });
