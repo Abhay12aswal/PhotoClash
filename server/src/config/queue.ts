@@ -16,4 +16,4 @@ export const defaultQueueOptions: DefaultJobOptions={
         delay:3000,
     },
     removeOnFail: false
-};
+};  

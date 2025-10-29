@@ -134,7 +134,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/abhay-aswal/Desktop/projects/PhotoClash/server/generated/prisma",
+      "value": "/Users/abhayaswal/Desktop/projects/PhotoClash/server/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -143,17 +143,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/abhay-aswal/Desktop/projects/PhotoClash/server/prisma/schema.prisma",
+    "sourceFilePath": "/Users/abhayaswal/Desktop/projects/PhotoClash/server/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
-    "schemaEnvPath": "../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../prisma",
   "clientVersion": "6.16.3",
@@ -162,6 +161,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
